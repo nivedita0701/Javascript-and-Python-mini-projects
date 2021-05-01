@@ -1,0 +1,182 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+:root {
+    --cell-size: 100px;
+    --mark-size: calc(var(--cell-size) * .9)
+}
+.header {
+    background: url('https://ialwaysbecoding.gitbooks.io/tic-tac-toe/content/ttt.gif');
+    width: 100%;
+    height:200px;
+    background-size:80% 200px;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-bottom: 5px solid rgb(85, 5, 5);
+    padding: 60px;
+    background-color: rgb(100, 25, 134);
+    /* opacity: 100%; */
+    
+}
+
+aside{
+    float: right;
+    width: 70%;
+}
+h1 {
+    color: rgb(20, 20, 20);
+}
+p,li{
+    /* display: inline-block; */
+    /* vertical-align: top; */
+    line-height: 28px;
+    float: left;
+    color: rgb(10, 73, 23);
+}
+body {
+    margin: 0;
+}
+section{
+    width: 30%;
+    height: 100%;
+    float: left;
+    /* display: flex; */
+    padding: 20px;
+    background-color: rgb(192, 236, 134);
+    border-right: 5px solid rgb(85, 5, 5);
+}
+/* .section2{
+
+} */
+.board {
+    width: 100w;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3,auto);
+    background-color: rgb(244, 235, 247);
+}
+
+.cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    /* background-color: black; */
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3) {
+    border-top: none;
+}
+
+.cell:nth-child(3n + 1) {
+    border-left: none;
+}
+.cell:nth-child(3n + 3) {
+    border-right: none;
+}
+.cell:last-child,
+.cell:nth-child(8),
+.cell:nth-child(7) {
+    border-bottom: none;
+}
+
+.cell.x, .cell.circle {
+    cursor: not-allowed;
+}
+
+.cell.x::before,
+.cell.x::after, 
+.cell.circle::before{
+     background-color: black;
+}
+
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after,
+.board.circle .cell:not(.x):not(.circle):hover::before {
+    background-color: lightgrey;
+}
+
+.cell.x::before,
+.cell.x::after, 
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after {
+    content: '';
+    position: absolute;
+    width: calc(var(--mark-size) * .15);
+    height: var(--mark-size);
+    
+}
+.cell.x::before,
+.board.x .cell:not(.x):not(.circle):hover::before {
+    transform: rotate(45deg);
+}
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::after {
+    transform: rotate(-45deg);
+}
+
+.cell.circle::before,
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::before,
+.board.circle .cell:not(.x):not(.circle):hover::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    
+}
+.cell.circle::before,
+.board.circle .cell:not(.x):not(.circle):hover::before {
+    width: var(--mark-size);
+    height: var(--mark-size);
+
+}
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::after {
+    width: calc(var(--mark-size) * .7);
+    height: calc(var(--mark-size) * .7);
+    background-color: rgb(244, 235, 247);
+}
+
+
+.winning-message {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .9);
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 5rem;
+    flex-direction: column;
+}
+
+.winning-message button {
+    font-size: 3rem;
+    background-color: white;
+    border: 1px solid black;
+    padding: .25em .5em;
+    cursor: pointer;
+}
+
+.winning-message button:hover {
+    background-color: black;
+    color: white;
+    border-color: white;
+}
+
+.winning-message.show {
+    display: flex;
+}
